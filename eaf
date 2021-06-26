@@ -1,4 +1,3 @@
---prison life 2021 made with nullware api reanimate first then execute [click attack]
 local plr = game.Players.LocalPlayer
 local mouse = plr:GetMouse()
 dead = false
@@ -7,37 +6,33 @@ game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 30
 c = false
 killAura = false
 if game.PlaceId ~= 155615604 then
-	return
+return
 end
 
 if not getgenv().Nullware_ReanimateLoaded then
-	game.StarterGui:SetCore("SendNotification", {
-		Title = "Game";
-		Text = "Need to be reanimated for this to work";
-		Icon = "";
-		Duration = "2.5";
-	})
-	return
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Game";
+        Text = "Need to be reanimated for this to work";
+        Icon = "";
+        Duration = "2.5";
+    })
+    return
 end
 getgenv().NullwareAPI:GetObject("CloneChar", "Humanoid").Died:Connect(function()
-	dead = true
+    dead = true
 end)
 
 mouse.Button1Down:Connect(function()
-	if dead == false then
-		if c == false then
-			print('on')
-			c = true
-			wait()
-			killAura = true
-			wait(0.13)
-			killAura = false
-			c = false
-			print('off')
-		end
-	else
-		print("dead = true")
-	end
+    if dead == false then
+        if c == false then
+            c = true
+            wait()
+            killAura = true
+            wait(0.13)
+            killAura = false
+            c = false
+        end
+    end
 end)
 
 
@@ -51,23 +46,29 @@ s = false
 
 local connection
 connection = runs.Heartbeat:Connect(function()
-	if dead == true then
-		connection:Disconnect()
-	end
-	wait()
-	if killAura == true then
-		for _, plr in pairs (game.Players:GetPlayers()) do
-			if plr.Name ~= game.Players.LocalPlayer.Name then
-				if s == false then
-					s = true
-					meleeRemote:FireServer(plr)
-					meleeRemote:FireServer(plr)
-					meleeRemote:FireServer(plr)
-					meleeRemote:FireServer(plr)
-					wait(0.02)
-					s = false
-				end
-			end
-		end
-	end
+    if dead == true then
+        connection:Disconnect()
+    end
+    wait()
+    if killAura == true then
+        for _, plr in pairs (game.Players:GetPlayers()) do
+            if plr.Name ~= game.Players.LocalPlayer.Name then
+                if s == false then
+                    s = true
+                    meleeRemote:FireServer(plr)
+                    meleeRemote:FireServer(plr)
+ meleeRemote:FireServer(plr)
+                    meleeRemote:FireServer(plr)
+                    wait(0.02)
+                    s = false
+                end
+            end
+        end
+    end
 end)
+  game.StarterGui:SetCore("SendNotification", {
+        Title = "Game";
+        Text = "Loaded Attack click";
+        Icon = "";
+        Duration = "0.5";
+    })
